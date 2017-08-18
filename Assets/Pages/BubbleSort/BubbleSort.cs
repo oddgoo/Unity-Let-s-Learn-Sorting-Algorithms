@@ -26,12 +26,6 @@ public class BubbleSort : MonoBehaviour
         StartCoroutine(fullSort());
     }
 
-    void updatePositions()
-    {
-
-    }
-
-
     IEnumerator fullSort()
     {
         yield return new WaitForSeconds(time);
