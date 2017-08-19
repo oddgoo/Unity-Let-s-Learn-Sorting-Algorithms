@@ -13,7 +13,6 @@ public class TitleSorter : MonoBehaviour {
     List<SortItem> sortItems = new List<SortItem>();
 
     string title = "ORDENAMIENTO";
-    //string title = "DIEGO ES GAY";
 
 	void Start () {
 
