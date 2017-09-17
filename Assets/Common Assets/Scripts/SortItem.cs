@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class SortItem : MonoBehaviour {
 
-    [HideInInspector]
     public int size;
 
     float origY, origZ;
