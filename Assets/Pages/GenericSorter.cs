@@ -22,9 +22,8 @@ public class GenericSorter : MonoBehaviour
 
     void shuffle()
     {
-        sortItems.Select(
-           x => swapItems(x, sortItems[ Random.Range(0, sortItems.Count) ]) 
-        );
+        foreach(SortItem s in sortItems)
+            swapItems(s, sortItems[Random.Range(0, sortItems.Count)]);
     }
 
     void swapItems(SortItem a, SortItem b)
