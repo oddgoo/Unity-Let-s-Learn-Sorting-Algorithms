@@ -25,7 +25,6 @@ public class BookPresenter : MonoBehaviour {
     bool sideMenuOpened = true;
     float sideMenuX;
 
-
     void Awake()
     {
         sideMenuRoot.SetActive(true);
@@ -48,7 +47,17 @@ public class BookPresenter : MonoBehaviour {
     void toggleSideMenu()
     {
         sideMenuOpened = !sideMenuOpened;
+        moveSideMenu();
+    }
 
+    void closeSideMenu()
+    {
+        sideMenuOpened = false;
+        moveSideMenu();
+    }
+
+    void moveSideMenu()
+    {
         LeanTween.moveLocalX(
             sideMenuRoot,
             sideMenuOpened ? sideMenuX : -600,
@@ -84,6 +93,7 @@ public class BookPresenter : MonoBehaviour {
             {
                 s.gameObject.SetActive(true);
                 currentSection = s;
+                title.text = s.gameObject.name;
             }
         }
         );
@@ -97,6 +107,7 @@ public class BookPresenter : MonoBehaviour {
         mainSections.ForEach(s => s.gameObject.SetActive(false));
         mainSections[sectionNumber].gameObject.SetActive(true);
         currentSection = mainSections[sectionNumber];
+        title.text = mainSections[sectionNumber].gameObject.name;
     }
 	
 }
