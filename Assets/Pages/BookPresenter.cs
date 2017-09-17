@@ -9,9 +9,11 @@ public class BookPresenter : MonoBehaviour {
 
     public Button button_next;
     public Button button_prev;
+    public Button button_menu;
 
     public GameObject sectionRoot;
     public GameObject sideMenuRoot;
+    public Text title;
 
     List<Section> mainSections = new List<Section>();
     Section currentSection;
@@ -20,9 +22,17 @@ public class BookPresenter : MonoBehaviour {
 
     List<GameObject> currentPages;
 
+    bool sideMenuOpened = true;
+    float sideMenuX;
+
 
     void Awake()
     {
+        sideMenuRoot.SetActive(true);
+        sideMenuX = sideMenuRoot.transform.localPosition.x;
+        sideMenuRoot.transform.localPosition = new Vector2(-600, sideMenuRoot.transform.localPosition.y);
+        toggleSideMenu();
+
         foreach(Transform t in sectionRoot.transform)
             mainSections.Add( t.GetComponent<Section>() );
 
@@ -31,6 +41,19 @@ public class BookPresenter : MonoBehaviour {
 
         button_next.onClick.AsObservable().Subscribe(_ => movePage(1));
         button_prev.onClick.AsObservable().Subscribe(_ => movePage(-1));
+
+        button_menu.onClick.AsObservable().Subscribe(_ => toggleSideMenu());
+    }
+
+    void toggleSideMenu()
+    {
+        sideMenuOpened = !sideMenuOpened;
+
+        LeanTween.moveLocalX(
+            sideMenuRoot,
+            sideMenuOpened ? sideMenuX : -600,
+            0.6f
+        ).setEase(LeanTweenType.easeOutSine);
     }
 
     void Start()

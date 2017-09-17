@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class TitleSorter : MonoBehaviour {
 
     public GameObject singleLetter;
+    public float spacing;
     public float offset;
+
     public float time = 0.2f;
 
     List<SortItem> sortItems = new List<SortItem>();
 
-    string title = "ORDENAMIENTO";
+    public string title = "ORDENAMIENTO";
 
 	void Start () {
 
@@ -38,7 +40,7 @@ public class TitleSorter : MonoBehaviour {
 
     float indexToLetterPos(float i)
     {
-        return (i * offset) - title.Length / 2 * offset + offset / 2;
+        return offset + (i * spacing) - title.Length / 2 * spacing + spacing / 2;
     }
 
     IEnumerator fullSort()
