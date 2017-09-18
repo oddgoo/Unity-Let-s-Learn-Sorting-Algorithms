@@ -10,21 +10,23 @@ public class SortItem : MonoBehaviour {
 
     private void Awake()
     {
-        origY = transform.position.y;
-        origZ = transform.position.z;
+        origY = transform.localPosition.y;
+        origZ = transform.localPosition.z;
     }
 
-    public void move(float newXPos, float time, int curveZ = 0, int curveY = 0)
+    public void move(float newXPos, float time, int curveZ = 0, float curveY = 0)
     {
         LeanTween.cancel(gameObject);
-        Vector3 startingPos = new Vector3(transform.position.x, origY, origZ);
-        transform.position = startingPos;
+        Vector3 startingPos = new Vector3(transform.localPosition.x, origY, origZ);
+        transform.localPosition = startingPos;
 
-        Vector3 newPos = new Vector3(newXPos, transform.position.y, transform.position.z);
         LeanTween.moveLocalX(gameObject, newXPos, time).setEaseInOutSine();
 
-        LeanTween.moveLocalZ(gameObject, curveZ, time / 2).setEaseInSine().setLoopPingPong(1);
-        LeanTween.moveLocalY(gameObject, curveY, time / 2).setEaseInSine().setLoopPingPong(1);
+        if(curveZ != 0)
+            LeanTween.moveLocalZ(gameObject, curveZ, time / 2).setEaseInSine().setLoopPingPong(1);
+
+        if (curveY != 0)
+            LeanTween.moveLocalY(gameObject, curveY, time / 2).setEaseInSine().setLoopPingPong(1);
     }
 
 }

@@ -5,38 +5,32 @@ using UnityEngine;
 
 public class GenericSorter : MonoBehaviour
 {
+    //TODO: Will DRY Funcitonality with TitleSorter
 
     public List<SortItem> sortItems;
-    public float time = 0.4f;
+    public float spacing;
+    public float offset;
+    public float time = 0.3f;
 
-    private void Awake()
+    private void Start()
     {
-        sortItems.Select((x, index) => x.size);
-    }
+        Debug.Log("Generic Sort Start");
+        for (int j = sortItems.Count - 1; j > 0; j--)
+            sortItems[j].size = j;
 
-    void OnEnable()
-    {
-        shuffle();
+        System.Random rnd = new System.Random();
+        sortItems = sortItems.OrderBy(x => rnd.Next()).ToList();
+
+        for (int i = 0; i < sortItems.Count; i++)
+            sortItems[i].move(indexToLetterPos(i), 0);
+
         StartCoroutine(fullSort());
     }
 
-    void shuffle()
+    float indexToLetterPos(float i)
     {
-        foreach(SortItem s in sortItems)
-            swapItems(s, sortItems[Random.Range(0, sortItems.Count)]);
+        return offset + (i * spacing) - sortItems.Count / 2 * spacing + spacing / 2;
     }
-
-    void swapItems(SortItem a, SortItem b)
-    {
-
-    }
-
-    void swapItems(float time)
-    {
-
-    }
-
-
 
     IEnumerator fullSort()
     {
@@ -49,11 +43,12 @@ public class GenericSorter : MonoBehaviour
                     SortItem temp = sortItems[i];
                     sortItems[i] = sortItems[i + 1];
                     sortItems[i + 1] = temp;
+
                     //Animation Stuff
-                    sortItems[i].move(i, time, 1);
-                    sortItems[i + 1].move(i + 1, time, -1);
+                    sortItems[i].move(indexToLetterPos(i), time, 0, 40);
+                    sortItems[i + 1].move(indexToLetterPos(i + 1), time, 0, -40);
+                    yield return new WaitForSeconds(time);
                 }
-                yield return new WaitForSeconds(time);
             }
     }
 }

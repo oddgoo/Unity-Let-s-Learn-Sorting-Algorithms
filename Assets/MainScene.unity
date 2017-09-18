@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 50166077}
   - component: {fileID: 50166080}
   m_Layer: 5
-  m_Name: HueA
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 130300700}
   - component: {fileID: 130300703}
   m_Layer: 5
-  m_Name: HueA (4)
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 139592811}
   - component: {fileID: 139592814}
   m_Layer: 5
-  m_Name: HueA (5)
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1520,7 +1520,7 @@ GameObject:
   - component: {fileID: 510217243}
   - component: {fileID: 510217246}
   m_Layer: 5
-  m_Name: HueA (1)
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4040,7 +4040,7 @@ GameObject:
   - component: {fileID: 1298685503}
   - component: {fileID: 1298685506}
   m_Layer: 5
-  m_Name: HueA (2)
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4464,7 +4464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -80.1}
+  m_AnchoredPosition: {x: 0, y: -74.05}
   m_SizeDelta: {x: 800, y: 128.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552914688
@@ -4511,13 +4511,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0954593dd87b0f84da003137f115b942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectsToSort:
-  - {fileID: 139592809}
-  - {fileID: 130300698}
-  - {fileID: 50166075}
-  - {fileID: 510217241}
-  - {fileID: 1298685501}
-  - {fileID: 1649208848}
+  sortItems:
+  - {fileID: 139592814}
+  - {fileID: 130300703}
+  - {fileID: 50166080}
+  - {fileID: 510217246}
+  - {fileID: 1298685506}
+  - {fileID: 1649208853}
+  spacing: 130
+  offset: 0
+  time: 0.4
 --- !u!1 &1572162148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4753,7 +4756,7 @@ GameObject:
   - component: {fileID: 1649208850}
   - component: {fileID: 1649208853}
   m_Layer: 5
-  m_Name: HueA (3)
+  m_Name: Hue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
