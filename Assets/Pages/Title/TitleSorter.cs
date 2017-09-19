@@ -61,7 +61,6 @@ public class TitleSorter : MonoBehaviour {
                     yield return new WaitForSeconds(time);
                 }
             }
-
     }
 
 }

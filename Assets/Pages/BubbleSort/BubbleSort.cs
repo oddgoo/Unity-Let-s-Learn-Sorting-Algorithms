@@ -17,7 +17,8 @@ public class BubbleSort : MonoBehaviour
 
         sortItems = Enumerable.Range(0, objectCount).Select((x, index) =>
            {
-               BubbleSortItem s = GameObject.Instantiate(objectToSort).GetComponent<BubbleSortItem>();
+               BubbleSortItem s = GameObject.Instantiate(objectToSort, transform).GetComponent<BubbleSortItem>();
+               s.transform.Translate(0, 0, -20);
                s.move(index, 0, Random.Range(-2, 2));
                return s;
            }
