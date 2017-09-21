@@ -27,6 +27,16 @@ public class BubbleSortItem : MonoBehaviour
         transform.Find("Model").localScale = Vector3.one * sortItem.size * scaleFactor;
     }
 
+    public Color getColor()
+    {
+        return transform.Find("Model").GetComponent<Renderer>().material.color;
+    }
+
+    public void setColor(Color color)
+    {
+        transform.Find("Model").GetComponent<Renderer>().material.color = color;
+    }
+
     public void move(int newIndex, float time, int curveZ = 0, int curveY = 0)
     {
         sortItem.move(newIndex, time, curveZ, curveY);

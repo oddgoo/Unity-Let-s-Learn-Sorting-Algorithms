@@ -18,7 +18,7 @@ public class BubbleSort : MonoBehaviour
         sortItems = Enumerable.Range(0, objectCount).Select((x, index) =>
            {
                BubbleSortItem s = GameObject.Instantiate(objectToSort, transform).GetComponent<BubbleSortItem>();
-               s.transform.Translate(0, 0, -20);
+               //s.transform.Translate(0, 0, -20);
                s.move(index, 0, Random.Range(-2, 2));
                return s;
            }
@@ -33,6 +33,11 @@ public class BubbleSort : MonoBehaviour
         for (int j = sortItems.Count - 1; j > 0; j--)
             for (int i = 0; i < j; i++)
             {
+                Color objectColor = sortItems[i].getColor();
+
+                sortItems[i].setColor(Color.green);
+                sortItems[i + 1].setColor(Color.green);
+
                 if (sortItems[i].size > sortItems[i + 1].size)
                 {
                     BubbleSortItem temp = sortItems[i];
@@ -43,6 +48,9 @@ public class BubbleSort : MonoBehaviour
                     sortItems[i + 1].move(i + 1, time, -1);
                 }
                 yield return new WaitForSeconds(time);
+
+                sortItems[i].setColor(objectColor);
+                sortItems[i + 1].setColor(objectColor);
             }
 
     }
