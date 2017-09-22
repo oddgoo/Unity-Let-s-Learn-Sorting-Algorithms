@@ -11,8 +11,9 @@ public class BubbleSort : MonoBehaviour
     public GameObject objectToSort;
 
     List<BubbleSortItem> sortItems;
+    Color objectColor;
 
-    void Start()
+    void Awake()
     {
 
         sortItems = Enumerable.Range(0, objectCount).Select((x, index) =>
@@ -20,10 +21,16 @@ public class BubbleSort : MonoBehaviour
                BubbleSortItem s = GameObject.Instantiate(objectToSort, transform).GetComponent<BubbleSortItem>();
                //s.transform.Translate(0, 0, -20);
                s.move(index, 0, Random.Range(-2, 2));
+               objectColor = s.getColor();
                return s;
            }
         ).ToList();
 
+        StartCoroutine(fullSort());
+    }
+
+    private void OnEnable()
+    {
         StartCoroutine(fullSort());
     }
 
@@ -33,8 +40,6 @@ public class BubbleSort : MonoBehaviour
         for (int j = sortItems.Count - 1; j > 0; j--)
             for (int i = 0; i < j; i++)
             {
-                Color objectColor = sortItems[i].getColor();
-
                 sortItems[i].setColor(Color.green);
                 sortItems[i + 1].setColor(Color.green);
 

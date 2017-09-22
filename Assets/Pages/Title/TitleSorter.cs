@@ -16,7 +16,7 @@ public class TitleSorter : MonoBehaviour {
 
     public string title = "ORDENAMIENTO";
 
-	void Start () {
+	void Awake () {
 
         for(int i=0; i<title.Length; i++)
         {
@@ -27,15 +27,22 @@ public class TitleSorter : MonoBehaviour {
             sortItems.Add(sortItem); 
         }
 		
+    }
+
+    private void OnEnable()
+    {
+        shuffle();
+        StartCoroutine(fullSort());
+    }
+
+    void shuffle()
+    {
         System.Random rnd = new System.Random();
         sortItems = sortItems.OrderBy(x => rnd.Next()).ToList();
 
-        for(int i=0; i< sortItems.Count; i++)
-        {
-            sortItems[i].move( indexToLetterPos(i), 0);
-        }
+        for (int i = 0; i < sortItems.Count; i++)
+            sortItems[i].move(indexToLetterPos(i), 0);
 
-        StartCoroutine(fullSort());
     }
 
     float indexToLetterPos(float i)

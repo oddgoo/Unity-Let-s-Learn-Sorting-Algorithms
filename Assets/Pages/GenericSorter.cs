@@ -12,19 +12,28 @@ public class GenericSorter : MonoBehaviour
     public float offset;
     public float time = 0.3f;
 
-    private void Start()
+    private void Awake()
     {
         Debug.Log("Generic Sort Start");
         for (int j = sortItems.Count - 1; j > 0; j--)
             sortItems[j].size = j;
 
+    }
+
+    private void OnEnable()
+    {
+        shuffle();
+        StartCoroutine(fullSort());
+    }
+
+    void shuffle()
+    {
         System.Random rnd = new System.Random();
         sortItems = sortItems.OrderBy(x => rnd.Next()).ToList();
 
         for (int i = 0; i < sortItems.Count; i++)
             sortItems[i].move(indexToLetterPos(i), 0);
 
-        StartCoroutine(fullSort());
     }
 
     float indexToLetterPos(float i)

@@ -10,6 +10,7 @@ public class BookPresenter : MonoBehaviour {
     public Button button_next;
     public Button button_prev;
     public Button button_menu;
+    public Button mainAreaButton;
 
     public GameObject sectionRoot;
     public GameObject sideMenuRoot;
@@ -39,6 +40,7 @@ public class BookPresenter : MonoBehaviour {
         sideButtons.ForEach(b => b.onClick.AsObservable().Subscribe(x => goToSection(b.name)));
 
         button_next.onClick.AsObservable().Subscribe(_ => movePage(1));
+        mainAreaButton.onClick.AsObservable().Subscribe(_ => movePage(1));
         button_prev.onClick.AsObservable().Subscribe(_ => movePage(-1));
 
         button_menu.onClick.AsObservable().Subscribe(_ => toggleSideMenu());
@@ -76,6 +78,7 @@ public class BookPresenter : MonoBehaviour {
 
     void movePage(int amount)
     {
+        closeSideMenu();
         if (!currentSection.movePage(amount))
             goToSection(  (int) (mainSections.FindIndex( x => x == currentSection) + Mathf.Sign(amount)) );
 
@@ -84,7 +87,7 @@ public class BookPresenter : MonoBehaviour {
 
     void goToSection(string sectionName)
     {
-
+        closeSideMenu();
         Debug.Log("Going to section: " + sectionName);
         mainSections.ForEach(s => {
             s.gameObject.SetActive(false);
@@ -101,6 +104,7 @@ public class BookPresenter : MonoBehaviour {
 
     void goToSection(int sectionNumber)
     {
+        closeSideMenu();
         if ( (sectionNumber < 0 ) || (sectionNumber >= mainSections.Count) )
             return;
 
